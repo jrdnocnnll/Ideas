@@ -1,0 +1,16 @@
+def calculate_points(total_points_possible, letter_grade_percentages, points_scale):
+    total_points_earned = 0
+    for letter_grade, percentage in letter_grade_percentages.items():
+        points_range = points_scale[letter_grade]
+        points_range_size = points_range[1] - points_range[0]
+        points_earned = percentage * total_points_possible / 100
+        points_earned_scaled = (points_earned - points_range[0]) / points_range_size * 100
+        total_points_earned += points_earned_scaled
+    return total_points_earned
+
+# Example usage:
+total_points_possible = 100
+letter_grade_percentages = {'A': 90, 'B': 80, 'C': 70, 'D': 60, 'F': 0}
+points_scale = {'A': [90, 100], 'B': [80, 89], 'C': [70, 79], 'D': [60, 69], 'F': [0, 59]}
+points_earned = calculate_points(total_points_possible, letter_grade_percentages, points_scale)
+print("Points earned:", points_earned)
